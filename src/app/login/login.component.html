@@ -1,0 +1,30 @@
+<mat-progress-bar *ngIf="showProgressBar" color="primary" mode="indeterminate"></mat-progress-bar>
+<div id="login" class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-5 login-top">
+      <mat-card>
+        <img class="rounded center" src='./../../assets/img/wms-logo.jpg' />
+        <h4 class="logo-title">Login to WMS</h4>
+        <form class="login-form-container">
+          <mat-form-field>
+            <input matInput type="text" name="username"
+              [(ngModel)]="wmsLoginObj.username" placeholder="Enter Username"
+              required>
+            <span class="material-icons" matPrefix>{{icon.person}} &nbsp;</span>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" name="password"
+              [(ngModel)]="wmsLoginObj.password" placeholder="Enter your
+              password" required>
+            <span class="material-icons" matPrefix>{{icon.lockOpen}} &nbsp;</span>
+          </mat-form-field>
+          <button class="login-mt-10" mat-flat-button color="primary"
+            (click)="login()">LOG IN</button>
+          <button mat-button class="text-center login-mt-10"
+            routerLink="/forget-password">Forget Password?</button>
+          <button mat-button class="text-center" routerLink="/signup">Sign Up Here?</button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+@import './../../sass/variable';
+#login {
+  .login-top {
+    margin-top: 5em;
+  }
+  .mat-card {
+    box-shadow: 0 0 40px $boxshadow-color;
+    color: $black;
+  }
+  .logo-title{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top:10px;
+  }
+  .center{
+    width:100px;
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .login-form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .login-form-container>* {
+    width: 100%;
+  }
+  .mat-form-field-flex{
+      align-items: flex-end;
+  }
+  .login-mt-10{
+   margin-top:10px;
+  }
+}

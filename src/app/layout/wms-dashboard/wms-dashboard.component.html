@@ -1,0 +1,190 @@
+<div id="wmsDashboard" class="container-fluid grid-container">
+  <!-- BREADCRUMB -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard/wms">Dashboard</a>
+      </li>
+    </ol>
+  </nav>
+  <!-- END BREADCRUMB -->
+
+  <!-- MOTOR PANEL (EM,ES)-->
+  <div fxLayout="row" fxLayout="row wrap" style="margin-bottom: 15px;">
+    <div fxFlex.md="100">
+      <mat-card style="padding:1px">
+        <mat-card-title>
+          <span>MOTOR PANEL(EM,ES)</span>
+          <button mat-icon-button class="more-button" (click)="expand()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Collapse" *ngIf="expandToggle">expand_more</mat-icon>
+            <mat-icon matTooltip="Expand" *ngIf="!expandToggle">expand_less</mat-icon>
+          </button>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content *ngIf="expandToggle">
+          <div class="img-displayBlock" *ngFor="let a of PANEL_OBJ">
+            <div *ngIf="a.phase === '1' && a.phaseStatus === 'ON'">
+              <img class="img-height" src='./../../../assets/img/svg/1PhaseON.svg' (click)="motorPanelSwitch(a.phaseStatus)">
+              <p style="text-align:center">Status : {{a.phaseStatus}}</p>
+            </div>
+          </div>
+          <div class="img-displayBlock" *ngFor="let a of PANEL_OBJ">
+            <div *ngIf="a.phase === '1' && a.phaseStatus === 'OFF'">
+              <img class="switch-off" src='./../../../assets/img/svg/1PhaseOFF.svg' (click)="motorPanelSwitch(a.phaseStatus)">
+              <p style="text-align:center">Status : {{a.phaseStatus}}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- END MOTOR PANEL -->
+
+  <!-- MOTOR PANEL (EM,ES)-->
+  <div fxLayout="row" fxLayout="row wrap" style="margin-bottom: 15px;">
+    <div fxFlex.md="100">
+      <mat-card style="padding:1px">
+        <mat-card-title>
+          <span>CONTROL VALUE PANEL(ECV,ESV)</span>
+          <button mat-icon-button class="more-button" (click)="expand()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Collapse" *ngIf="expandToggle">expand_more</mat-icon>
+            <mat-icon matTooltip="Expand" *ngIf="!expandToggle">expand_less</mat-icon>
+          </button>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content *ngIf="expandToggle">
+          <span *ngFor="let a of CONTRAL_VALUES">
+            <img src={{a.on}} style="margin-right:10px;margin-left:10px" />
+            <img src={{a.off}} />
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- END CONTROL VALUE PANEL-->
+
+  <!-- MANUAL PANEL(MV,FM,PS)-->
+  <div fxLayout="row" fxLayout="row wrap" style="margin-bottom: 15px;">
+    <div fxFlex.md="100">
+      <mat-card style="padding:1px">
+        <mat-card-title>
+          <span>MANUAL PANEL(MV,FM,PS)</span>
+          <button mat-icon-button class="more-button" (click)="expand()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Collapse" *ngIf="expandToggle">expand_more</mat-icon>
+            <mat-icon matTooltip="Expand" *ngIf="!expandToggle">expand_less</mat-icon>
+          </button>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content *ngIf="expandToggle">
+          <span *ngFor="let a of MANUAL_PANEL">
+            <img src={{a.on}} style="height:75px;margin-right:10px;margin-left:10px" />
+            <img src={{a.off}} style="height:75px;margin-right:10px;margin-left:10px" />
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- END MANUAL PANEL -->
+  
+  <div fxLayout="row" fxLayout="row wrap" style="margin-bottom: 15px;">
+    <div fxFlex.md="100">
+      <mat-card style="padding:1px">
+        <mat-card-title>
+          <span>Water Schema</span>
+          <button style="right:50px" mat-icon-button class="more-button" (click)="fullscreen()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Fullscreen">fullscreen</mat-icon>
+          </button>
+          <button mat-icon-button class="more-button" (click)="waterSchemaExpand()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Collapse" *ngIf="waterSchema">expand_more</mat-icon>
+            <mat-icon matTooltip="Expand" *ngIf="!waterSchema">expand_less</mat-icon>
+          </button>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content id="fullScreen" *ngIf="waterSchema">
+          <mat-button-toggle-group style="margin-bottom: 10px;float: right" name="fontStyle">
+            <mat-button-toggle value="bold" (click)="wp()">WP</mat-button-toggle>
+            <mat-button-toggle value="bold" (click)="fbd()">FBD</mat-button-toggle>
+            <mat-button-toggle value="italic" (click)="tvmp()">TVMP</mat-button-toggle>
+            <mat-button-toggle value="underline">ISO</mat-button-toggle>
+          </mat-button-toggle-group>
+          <img *ngIf="showWp" src='./../../../assets//img//wms.PNG' style="width:100%">
+          <img *ngIf="showFbd" src='./../../../assets/img/chart.PNG' style="width:100%;height:500px">
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- REPORTS SECTION -->
+  <div fxLayout="row" fxLayout="row wrap">
+    <div fxFlex.lt-sm="100" fxFlex.sm="33.3" fxFlex.md="33.3" style="padding:0px
+      15px 15px 0px">
+      <mat-card style="background-color:#01c0c8;height:150px;color:white">
+        <mat-card-content style="text-align:center;padding-top:50px">
+          <span style="font-size:20px">
+            QPCS REPORT
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex.lt-sm="100" fxFlex.sm="33.3" fxFlex.md="33.3" style="padding:0px
+      15px 15px 0px">
+      <mat-card style="background-color:#fb9678;height:150px;color:white">
+        <mat-card-content style="text-align:center;padding-top:50px">
+          <span style="font-size:20px">Q2MIN CONSOLE REPORT</span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex.lt-sm="100" fxFlex.sm="33.3" fxFlex.md="33.3" style="padding:0px
+      0px 15px 0px">
+      <mat-card style="background-color:#ab8ce4;height:150px;color:white">
+        <mat-card-content style="text-align:center;padding-top:50px">
+          <span style="font-size:20px">WMS REPORTS</span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- END REPORTS SECTION-->
+  <!-- CHART SECTION -->
+  <div fxLayout="row" fxLayout="row wrap" style="margin-bottom: 15px;">
+    <div fxFlex.lt-sm="100" fxFlex.sm="50" fxFlex.md="50" style="padding:0px
+    15px 15px 0px">
+      <mat-card style="padding:1px">
+        <mat-card-title>
+          <span>QPCS</span>
+          <button style="right:50px" mat-icon-button class="more-button" (click)="fullscreen()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Fullscreen">fullscreen</mat-icon>
+          </button>
+          <button mat-icon-button class="more-button" (click)="waterSchemaExpand()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Collapse" *ngIf="waterSchema">expand_more</mat-icon>
+            <mat-icon matTooltip="Expand" *ngIf="!waterSchema">expand_less</mat-icon>
+          </button>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content id="fullScreen" *ngIf="waterSchema">
+          <img src='./../../../assets/img/chart.PNG' style="width:100%">
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxFlex.lt-sm="100" fxFlex.sm="50" fxFlex.md="50" style="padding:0px
+    0px 15px 0px">
+      <mat-card style="padding:1px">
+        <mat-card-title>
+          <span>Q2MIN CONSOLE</span>
+          <button style="right:50px" mat-icon-button class="more-button" (click)="fullscreen()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Fullscreen">fullscreen</mat-icon>
+          </button>
+          <button mat-icon-button class="more-button" (click)="waterSchemaExpand()" aria-label="Toggle menu">
+            <mat-icon matTooltip="Collapse" *ngIf="waterSchema">expand_more</mat-icon>
+            <mat-icon matTooltip="Expand" *ngIf="!waterSchema">expand_less</mat-icon>
+          </button>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content id="fullScreen" *ngIf="waterSchema">
+          <img src='./../../../assets/img/chart.PNG' style="width:100%">
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- END CHART SECTION -->
+</div>

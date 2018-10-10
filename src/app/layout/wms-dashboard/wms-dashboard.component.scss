@@ -1,0 +1,39 @@
+#wmsDashboard {
+  .mat-card {
+    padding: 0px;
+  }
+
+  .mat-card-title {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    line-height: 1;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .mat-card-content {
+    padding: 1rem;
+  }
+
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+
+  .img-displayBlock {
+    display: inline-block
+  }
+
+  .img-height {
+    height: 75px;
+    margin-left:15px;
+  }
+
+  .switch-off{
+    @extend .img-height;
+    position: relative;
+    top:6px;
+  }
+}

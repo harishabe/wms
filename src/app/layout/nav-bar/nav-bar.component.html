@@ -1,0 +1,118 @@
+<mat-sidenav-container id="nav-bar" class="sidenav-container">
+
+  <!-- BELOW CODE SIDE BAR WITH MENU -->
+  <mat-sidenav #drawer class="sidenav sidebar-box-shadow" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar class="sidenav-header">
+      <img src="./../../../assets/img/wms-logo.jpg" width="30px" height="30px" />
+      <span class="title-margin-10">WMS</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-nav-list class="sidebar-list">
+      <div class="user-icon">
+        <img src="../../../assets/img/1.jpg" alt="user" class="rounded-circle user-icon-margin" width="50" />
+        <span href="">Harisha</span>
+      </div>
+      <mat-divider></mat-divider>
+      <a mat-list-item matTooltip="Dashboard" routerLink="/dashboard/wms">
+        <mat-icon class="material-icons">{{icon.dashboard}}</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-list-item matTooltip="Static schema plot" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.bar_chart_icon}}</mat-icon>
+        <span>Static schema</span>
+      </a>
+      <a mat-list-item matTooltip="Dynamic schema plot" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.barchart}}</mat-icon>
+        <span>Dynamic schema</span>
+      </a>
+      <a mat-list-item matTooltip="Tank quality balancing" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.quality_icon}}</mat-icon>
+        <span>Tank quantity</span>
+      </a>
+      <a mat-list-item matTooltip="Water tanker" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.water_icon}}</mat-icon>
+        <span>Water tanker</span>
+      </a>
+      <a mat-list-item matTooltip="Flow monitoring system" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.flow_water_icon}}</mat-icon>
+        <span>Flow monitoring</span>
+      </a>
+      <a mat-list-item matTooltip="Drinking water system" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.drinking_water_icon}}</mat-icon>
+        <span>Drinking water</span>
+      </a>
+      <a mat-list-item matTooltip="Reports" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.report_icon}}</mat-icon>
+        <span>Reports</span>
+      </a>
+      <a mat-list-item matTooltip="Billing" routerLink="/dashboard/reports">
+        <mat-icon class="material-icons">{{icon.billing_icon}}</mat-icon>
+        <span>Billing</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!-- END SIDEBAR MENU -->
+
+  <mat-sidenav-content>
+    <mat-toolbar class="navbar-header" color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">
+          <mat-icon class="material-icons">
+            {{icon.menu}}
+          </mat-icon>
+        </mat-icon>
+      </button>
+
+      <div class="space"></div>
+
+      <!-- BELOW CODE FOR CHART -->
+      <button mat-button matTooltip="Message" [matMenuTriggerFor]="wmsChat">
+        <mat-icon matBadge="8" matBadgePosition="after" matBadgeColor="warn" class="mat-icon material-icons">{{icon.chat}}</mat-icon>
+      </button>
+      <mat-menu #wmsChat="matMenu">
+        <button *ngFor="let msg of message" class="mat-menu-item" mat-menu-item="" role="menuitem" tabindex="0"
+          aria-disabled="false">
+          <img src={{msg.icon}} alt="user" class="rounded-circle" width="31" /> {{msg.msg}}
+        </button>
+      </mat-menu>
+      <!-- END CHART -->
+
+      <!-- BELOW CODE FOR NOTIFICATION -->
+      <button mat-button matTooltip="Notification" [matMenuTriggerFor]="wmsNotification">
+        <mat-icon matBadge="8" matBadgePosition="after" matBadgeColor="warn" class="mat-icon material-icons">{{icon.alert}}</mat-icon>
+      </button>
+      <mat-menu #wmsNotification="matMenu">
+        <button *ngFor="let msg of message" class="mat-menu-item" mat-menu-item="" role="menuitem" tabindex="0"
+          aria-disabled="false">
+          <img src={{msg.icon}} alt="user" class="rounded-circle" width="31" /> {{msg.msg}}
+        </button>
+      </mat-menu>
+      <!-- END NOTIFICATION -->
+
+      <!-- BELOW CODE FOR LOGOUT -->
+      <button mat-button matTooltip="User profile" [matMenuTriggerFor]="logOut">
+        <mat-icon class="mat-icon material-icons">{{icon.person}}</mat-icon>
+      </button>
+      <mat-menu #logOut="matMenu">
+        <button mat-menu-item>
+          <mat-icon class="mat-icon material-icons">{{icon.settings}}</mat-icon>
+          <span>Setting</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon class="mat-icon material-icons">{{icon.userAccount}}</mat-icon>
+          <span>Profile</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button routerLink="/" mat-menu-item>
+          <mat-icon class="mat-icon material-icons">{{icon.exit}}</mat-icon>
+          <span>Log Out</span>
+        </button>
+      </mat-menu>
+      <!-- END LOGOUT -->
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

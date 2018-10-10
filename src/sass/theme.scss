@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+// Typography
+// head line 32px,48px,700 - 32px:font size , 48px:line height , 700:font weight
+// body  16px,24px,500 - 16px:font size , 24px:line height , 500:font weight
+$custom-typography:mat-typography-config( 
+    $font-family: 'Roboto, sans-serif',
+    $headline: mat-typography-level(32px, 48px, 700), 
+    $body-1: mat-typography-level(14px, 24px, 500)
+);
+
+$wms-app-primary: mat-palette($mat-blue, A700);
+$wms-app-accent : mat-palette($mat-blue-grey);
+$wms-app-warn : mat-palette($mat-deep-orange);
+$wms-app-theme: mat-light-theme($wms-app-primary, $wms-app-accent, $wms-app-warn);
+
+@include mat-base-typography($custom-typography);
+@include mat-checkbox-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);
+@include angular-material-theme($wms-app-theme);
